@@ -1,0 +1,17 @@
+<div class="container">
+    <table class="table-striped table-hover custom-table">
+        <thead>
+            <tr>
+                <th *ngFor="let column of options.columns" (click)="sortHeader(column.value)"
+                    [ngClass]="{ 'sorting': isSorting(column.value), 'sorting_asc': isSortAsc(column.value), 'sorting_desc': isSortDesc(column.value) }">
+                    <span [innerHTML]="column.name"></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of (options.records | async)">
+                <td *ngFor="let column of options.columns">{{getValue(row, column)}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

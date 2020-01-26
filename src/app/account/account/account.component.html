@@ -1,0 +1,11 @@
+<div class="container table-responsive">
+    
+    <v-table [options]="tableOptions"></v-table>
+
+    <button type="button" class="btn btn-primary float-right" [disabled]="!hasMore" (click)="loadMore()">Load
+        More</button>
+
+    <div class="alert alert-dark" *ngIf="loading$ | async">
+        Fetching account info
+    </div>
+</div>

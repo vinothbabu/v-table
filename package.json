@@ -1,5 +1,5 @@
 {
-  "name": "v-table",
+  "name": "account-poc",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,18 +7,29 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.8",
+    "@angular/cdk": "~8.2.3",
     "@angular/common": "~8.2.8",
     "@angular/compiler": "~8.2.8",
     "@angular/core": "~8.2.8",
     "@angular/forms": "~8.2.8",
+    "@angular/material": "^8.2.3",
     "@angular/platform-browser": "~8.2.8",
     "@angular/platform-browser-dynamic": "~8.2.8",
     "@angular/router": "~8.2.8",
+    "@ngrx/store": "^8.6.0",
+    "@ngrx/store-devtools": "^8.6.0",
+    "angular-material": "^1.1.21",
+    "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "font-awesome": "^4.7.0",
+    "path": "^0.12.7",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -43,5 +54,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "engines": {
+    "node": "12.10.0",
+    "npm": "6.10.3"
   }
 }
