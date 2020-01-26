@@ -5,7 +5,7 @@
     <button type="button" class="btn btn-primary float-right" [disabled]="!hasMore" (click)="loadMore()">Load
         More</button>
 
-    <div class="alert alert-dark" *ngIf="loading$ | async">
+    <div class="alert alert-dark" style="width: 85%;" *ngIf="loading$ | async">
         Fetching account info
     </div>
 </div>
