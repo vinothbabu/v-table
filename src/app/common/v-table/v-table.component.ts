@@ -45,7 +45,7 @@ export class VTableComponent implements OnInit {
       let sortDirection = false
       if (this.options.config.sortBy === headerName) {
         this.options.config.sortDirection = this.options.config.sortDirection === 'asc' ? 'desc' : 'asc'
-        sortDirection = this.options.config.sortDirection === 'asc' ? true : false;
+        sortDirection = this.options.config.sortDirection === 'desc' ? true : false;
       }
       this.options.config.sortBy = headerName;
       this.sort(this.sortedData, this.options.config.sortBy, sortDirection,false);
