@@ -11,10 +11,11 @@ export class VTableComponent implements OnInit {
 
   @Input() options: VTableOptions;
   sortedData
+  _sortDataSub: Subscription
   constructor() { }
 
   ngOnInit() {
-    this.options.records.subscribe(val => {
+    this._sortDataSub = this.options.records.subscribe(val => {
       // deal with asynchronous Observable result
       this.sortedData = val;
     })
@@ -42,33 +43,33 @@ export class VTableComponent implements OnInit {
 
   sortHeader(headerName: string) {
     if (headerName) {
-      let sortDirection = false
       if (this.options.config.sortBy === headerName) {
         this.options.config.sortDirection = this.options.config.sortDirection === 'asc' ? 'desc' : 'asc'
-        sortDirection = this.options.config.sortDirection === 'desc' ? true : false;
       }
       this.options.config.sortBy = headerName;
-      this.sort(this.sortedData, this.options.config.sortBy, sortDirection,false);
+ 
+      this.sort(this.sortedData, this.options.config.sortBy, this.options.config.sortDirection);
     }
   }
 
-  private sort = (arr,field, reverse, primer) => {
+  private sort = (arr,field, reverse) => {
+    return arr.sort((a,b) => {
 
-    const key = primer ?
-      function(x) {
-        return primer(x[field])
-      } :
-      function(x) {
-        return x[field]
-      };
+        let x = reverse === "asc" ? a : b
+        let y = reverse === "asc" ? b : a
     
-      console.log("key", key)
-  
-    reverse = !reverse ? 1 : -1;
-  
-    return arr.sort(function(a, b) {
-      return a = key(a), b = key(b), reverse * ((a as any > b as any) - (b as any > a as any));
+        if(isNaN(arr[0][field])){
+          if(isNaN(arr[0][field].split("-")[1])){
+            return x[field].localeCompare(y[field])
+          }
+        }else{
+            return x[field] - y[field] 
+        }
     })
+  }
+
+  ngOnDestroy(){
+    this._sortDataSub.unsubscribe();
   }
 
 
